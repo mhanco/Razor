@@ -73,18 +73,17 @@ module ProjectRazor
 
       def boot_call(node, policy_uuid)
         super(node, policy_uuid)
+        fsm_action(:boot_call, :boot_call)
         case @current_state
         when :init, :broker_check, :complete_no_broker
-          ret = local_boot(node)
+          local_boot(node)
         when :timeout_error, :error_catch
           engine = ProjectRazor::Engine.instance
-          ret = engine.default_mk_boot(node.uuid)
+          engine.default_mk_boot(node.uuid)
         else
           engine = ProjectRazor::Engine.instance
-          ret = engine.default_mk_boot(node.uuid)
+          engine.default_mk_boot(node.uuid)
         end
-        fsm_action(:boot_call, :boot_call)
-        ret
       end
 
       def local_boot(node)
