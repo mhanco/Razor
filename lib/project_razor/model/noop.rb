@@ -13,7 +13,7 @@ module ProjectRazor
         @hidden = false
         @template = :noop
         @name = "noop"
-        @description = "NoOp Model. Don't deploy, just boot existing OS"
+        @description = "Model for deploying nothing."
         # Metadata vars
         @current_state = :init
         @image_uuid = true
