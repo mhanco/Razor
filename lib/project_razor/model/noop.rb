@@ -58,17 +58,16 @@ module ProjectRazor
 
       def mk_call(node, policy_uuid)
         super(node, policy_uuid)
+        fsm_action(:mk_call, :mk_call)
         case @current_state
           # We need to reboot
         when :init, :os_complete, :broker_check
-          ret = [:reboot, {}]
+          [:reboot, {}]
         when :timeout_error, :error_catch
-          ret = [:acknowledge, {}]
+          [:acknowledge, {}]
         else
-          ret = [:acknowledge, {}]
+          [:acknowledge, {}]
         end
-        fsm_action(:mk_call, :mk_call)
-        ret
       end
 
       def boot_call(node, policy_uuid)
