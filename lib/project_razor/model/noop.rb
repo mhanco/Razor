@@ -90,7 +90,6 @@ module ProjectRazor
       def local_boot(node)
         ip = "#!ipxe\n"
         ip << "echo Reached #{@label} model boot_call\n"
-        ip << "echo Our image UUID is: #{@image_uuid}\n"
         ip << "echo Our state is: #{@current_state}\n"
         ip << "echo Our node UUID: #{node.uuid}\n"
         ip << "\n"
