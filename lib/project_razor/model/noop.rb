@@ -58,8 +58,9 @@ module ProjectRazor
 
       def mk_call(node, policy_uuid)
         super(node, policy_uuid)
+        previous_state = @current_state
         fsm_action(:mk_call, :mk_call)
-        case @current_state
+        case previous_state
           # We need to reboot
         when :init, :os_complete, :broker_check
           [:reboot, {}]
@@ -72,8 +73,9 @@ module ProjectRazor
 
       def boot_call(node, policy_uuid)
         super(node, policy_uuid)
+        previous_state = @current_state
         fsm_action(:boot_call, :boot_call)
-        case @current_state
+        case previous_state
         when :init, :broker_check, :complete_no_broker
           local_boot(node)
         when :timeout_error, :error_catch
