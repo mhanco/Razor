@@ -16,10 +16,10 @@ module ProjectRazor
         @description = "Model for deploying nothing."
         # Metadata vars
         @current_state = :init
+        @final_state = :os_complete
         @image_uuid = true
         @image_prefix = "os"
         @broker_plugin = false
-        @final_state = :os_complete
         from_hash(hash) unless hash == nil
         @req_metadata_hash = {}
       end
